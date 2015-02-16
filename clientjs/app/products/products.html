@@ -1,0 +1,48 @@
+<h3>Product List</h3>
+<p>
+<form novalidate name="newform">
+	<table>
+		<tr>
+			<td>Product Name:</td>
+			<td><input type="text" name="name" ng-model="product.name" required> <span class="error">*</span></td>
+			<td style="text-align: left; padding: 0"><span class="error"
+				ng-show="newform.name.$dirty && newform.name.$error.required"> Name is required!</span> <span class="error"
+				ng-show="newform.name.$error.server">{{ errors.name }}</span></td>
+		</tr>
+		<tr>
+			<td>Product Model:</td>
+			<td><input type="text" name="model" ng-model="product.model" required> <span class="error">*</span></td>
+			<td style="text-align: left; padding: 0"><span class="error"
+				ng-show="newform.model.$dirty && newform.model.$error.required"> Model is required!</span> <span class="error"
+				ng-show="newform.model.$error.server">{{errors.model}}</span></td>
+		</tr>
+		<tr>
+			<td>Product Price ($):</td>
+			<td><input type="number" name="price" ng-model="product.price" min="0" required> <span class="error">*</span>
+			</td>
+			<td style="text-align: left; padding: 0"><span class="error"
+				ng-show="newform.price.$dirty && newform.price.$error.required"> Price is incorrect!</span> <span class="error"
+				ng-show="newform.price.$dirty && newform.price.$error.number"> Not valid number!</span> <span class="error"
+				ng-show="newform.price.$error.server">{{errors.price}}</span></td>
+		</tr>
+		<tr>
+			<td>Description:</td>
+			<td><textarea name="description" ng-model="product.description" rows="4" cols="50">Enter text here...</textarea></td>
+			<td />
+		</tr>
+	</table>
+	<button ng-disabled="!newform.$valid" ng-click="addProduct()">Submit</button>
+</form>
+</p>
+
+<br />
+<h ng-show="products.length > 0"> Products List</h>
+<table class="enhtable" style="width: 100%" ng-show="products.length > 0">
+	<tr class="enhtr" ng-repeat="x in products | orderBy : 'name'">
+		<td class="enhtd" style="width: 10%"><a href="#/products/{{x.name}}">{{ x.name }}</a></td>
+		<td class="enhtd" style="width: 10%">{{ x.model }}</td>
+		<td class="enhtd" style="width: 10%">{{ x.price }}</td>
+		<td class="enhtd" style="width: 60%">{{ x.description }}</td>
+
+	</tr>
+</table>

@@ -1,0 +1,42 @@
+<h3>Product Details</h3>
+<table>
+	<tr>
+		<td>Product Name:</td>
+		<td>{{product.name}}</td>
+	</tr>
+	<tr>
+		<td>Product Model:</td>
+		<td>{{product.model}}</td>
+	</tr>
+	<tr>
+		<td>Product Price:</td>
+		<td>{{product.price}}</td>
+	</tr>
+	<tr>
+		<td>Description:</td>
+		<td>{{product.description}}</td>
+	</tr>
+</table>
+
+<p>
+<form novalidate name="newform">
+	<table>
+		<tr>
+			<td>Name:</td>
+			<td><input type="text" name="name" ng-model="comment.name" required> <span class="error">*</span></td>
+			<td style="text-align: left; padding: 0"><span class="error"
+				ng-show="newform.name.$dirty && newform.name.$error.required"> Name is required!</span></td>
+		</tr>
+		<tr>
+			<td>Message:</td>
+			<td><textarea name="message" ng-model="comment.message" rows="4" cols="50">Enter text here...</textarea required></td>
+			<td />
+		</tr>
+	</table>
+	<button ng-disabled="!newform.$valid" ng-click="addComment()">Submit</button>
+</form>
+</p>
+
+<ul>
+	<li ng-repeat="x in product.comments"><b>{{ x.name }}</b> commented...<br />{{ x.message }}<br /> <br /></li>
+</ul>
